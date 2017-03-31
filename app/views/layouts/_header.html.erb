@@ -11,6 +11,7 @@
         <!-- <li><%= link_to "Help",   '#' %></li> -->
         <% if logged_in? %>
           <li><%= link_to "Courses",   courses_path %></li>
+          <li><%= link_to "Course Search",   new_search_path %></li>
           <li><%= link_to "Instructors",   instructors_path %></li>
           <li><%= link_to "Subjects",   subjects_path %></li>
           <li><%= link_to "Log out", logout_path, method: "delete" %></li>

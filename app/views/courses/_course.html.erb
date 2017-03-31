@@ -1,0 +1,13 @@
+<div class="Course">
+  <h3><%= link_to course.name, course %></h3>
+  <div class="details">
+    <%= course.description %>
+  </div>
+  <br/>
+  <div class="col-md-3">
+    <%= button_to 'Enroll', {:controller => "enrollments", :action => "create", :course_id => course.id,  :user_id=> session[:user_id].to_i}, :method=>:post, :class => "btn btn-default", role: "button", :unique => true %>
+  </div>
+</div>
+<br/>
+<br/>
+<br/>
