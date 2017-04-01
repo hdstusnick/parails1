@@ -4,7 +4,12 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.where(["name LIKE ?","%#{params[:search]}%"])
+    @courses = Course.paginate(:page => params[:page], :per_page => 15)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @products }
+      format.js
+    end
   end
 
   # GET /courses/1

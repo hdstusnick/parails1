@@ -1,38 +1,9 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Courses</h1>
-
-  <%= form_tag courses_path, :method => 'get' do %>
-    <%= text_field_tag :search, params[:search]  %>
-    <%= submit_tag "Search" %>
-  <%end%>
-
-<table>
-  <thead>
-    <tr>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Independent study</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @courses.each do |course| %>
-      <tr>
-        <td><%= course.code %></td>
-        <td><%= course.name %></td>
-        <td><%= course.independent_study %></td>
-        <td><%= course.description %></td>
-        <!-- <td><%= link_to 'Show', course %></td>
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
-        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Course', new_course_path %>
+<div id="courses">
+	<%= render "courses/courses" %>
+</div>
+<script>
+$(function(){
+   $('.pagination a').attr('data-remote', 'true')
+});
+</script>

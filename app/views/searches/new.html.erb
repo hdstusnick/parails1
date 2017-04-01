@@ -1,23 +1,18 @@
 <h1>Search</h1>
-  <%= form_for @search, html:{class: "pure-form"} do |s| %>
+  <%= form_tag('/results', method: "get", id: "result_form") do %>
 
     <div class = "field">
-      <%= s.label :keywords %> <br/>
-      <%= s.text_field :keywords %>
+      Keywords
+      <%= text_field_tag :keywords, params[:keywords] %>
     </div>
 
     <div class = "field">
-      <%= s.label :subject %> <br/>
-      <%= s.select :subjects, options_for_select(@subject), :include_blank => true %>
-    </div>
-
-    <div class = "field">
-      <%= s.label :code %> <br/>
-      <%= s.select :code, options_for_select(@code), :include_blank => true %>
+      Subject
+      <%= select("subjects", "name", @subject, {include_blank: true})  %>
     </div>
 
     <div class = "actions">
-      <%= s.submit "Search", class: "pure-button pure-button-primary" %>
+      <%= submit_tag "Search", class: "pure-button pure-button-primary" %>
     </div>
   <% end %>
 <p><%=link_to 'Back', courses_path %></p>
