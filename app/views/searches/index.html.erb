@@ -1,0 +1,51 @@
+<h1>Search</h1>
+  <%= form_tag('/results', method: "get", id: "result_form") do %>
+
+    <div class = "field">
+      Keywords
+      <%= text_field_tag :keywords, params[:keywords] %>
+    </div>
+
+    <div class = "field">
+      Subject
+      <%= select("subjects", "name", @subject, {include_blank: true})  %>
+    </div>
+
+    <div class = "actions">
+      <%= submit_tag "Search", class: "pure-button pure-button-primary" %>
+    </div>
+  <% end %>
+
+  <% if @courses.length !=0 %>
+  <div class="listing">
+      <%y = (@page*15)-15%>
+      <%x = y+14%>
+      <% for i in y...x %>
+        <%if i<@courses.length%>
+          <%= c = @courses[i]%>
+          <div>
+              <h3><%= link_to c.name, c %></h3>
+              <span> <%= c.description %>  </span>
+          </div>
+          <br/>
+          <div class="col-md-3">
+            <%= button_to 'Enroll', {:controller => "enrollments", :action => "create", :course_id => c.id,  :user_id=> session[:user_id].to_i}, :method=>:post, :class => "btn btn-default", role: "button", :unique => true %>
+          </div>
+          <br/>
+          <br/>
+          <br/>
+        <%end%>
+      <%end%>
+      <%if @page>1%>
+      <div class="col-md-3">
+        <%= link_to "Previous page", "/results1?page=#{@page-1}&keywords=#{@keywords}&subjects=#{@subjects}"%>
+      </div>
+      <%end%>
+      <%if @page*15<@courses.length%>
+      <div class="col-md-3">
+        <%= link_to "Next page", "/results1?page=#{@page+1}&keywords=#{@keywords}&subjects=#{@subjects}"%>
+      </div>
+      <%end%>
+  </div>
+  <% end %>  
+<p><%=link_to 'Back', courses_path %></p>

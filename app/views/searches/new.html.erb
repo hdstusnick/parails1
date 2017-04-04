@@ -1,18 +1,21 @@
 <h1>Search</h1>
-  <%= form_tag('/results', method: "get", id: "result_form") do %>
+  <%= form_tag('/results', method: "get", remote: true, role: "form", class: "form", id: "result_form") do %>
 
-    <div class = "field">
-      Keywords
-      <%= text_field_tag :keywords, params[:keywords] %>
+    <div class = "form-group">
+      <label>Keywords</label>
+      <%= text_field_tag(:keywords, params[:keywords], class: "form-control", onkeyup:"submitFrmAjax();") %>
     </div>
 
-    <div class = "field">
-      Subject
+    <div class = "form-group">
+      <label>Subject</label>
       <%= select("subjects", "name", @subject, {include_blank: true})  %>
     </div>
+    <%= submit_tag "Search", class: "pure-button pure-button-primary" %>
 
-    <div class = "actions">
-      <%= submit_tag "Search", class: "pure-button pure-button-primary" %>
-    </div>
   <% end %>
 <p><%=link_to 'Back', courses_path %></p>
+
+<div class="row col-md-offset-1 col-md-11">
+  <div id="results">
+  </div>
+</div>
