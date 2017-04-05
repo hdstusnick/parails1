@@ -15,3 +15,12 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+
+
+function AJAXSearchForm(){
+    console.log("onkeyup");
+    $.ajax({
+         url : "/results",
+         data : $("form").serialize()
+    });
+}

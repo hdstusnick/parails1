@@ -3,14 +3,14 @@
 
     <div class = "form-group">
       <label>Keywords</label>
-      <%= text_field_tag(:keywords, params[:keywords], class: "form-control", onkeyup:"submitFrmAjax();") %>
+      <%= text_field_tag(:keywords, params[:keywords], class: "form-control", onkeyup:"AJAXSearchForm();") %>
     </div>
 
     <div class = "form-group">
       <label>Subject</label>
-      <%= select("subjects", "name", @subject, {include_blank: true})  %>
+      <%= select("subjects", "name", @subject, {include_blank: true}, onchange:"AJAXSearchForm();") %>
     </div>
-    <%= submit_tag "Search", class: "pure-button pure-button-primary" %>
+    
 
   <% end %>
 <p><%=link_to 'Back', courses_path %></p>
@@ -19,3 +19,14 @@
   <div id="results">
   </div>
 </div>
+
+<!-- <script>
+
+function AJAXSearchForm(){
+    console.log("onkeyup");
+    $.ajax({
+         url : <%=results_path%>,
+         data : $("form#new").serialize()
+    });
+}
+</script> -->

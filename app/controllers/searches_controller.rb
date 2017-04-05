@@ -20,6 +20,7 @@ class SearchesController < ApplicationController
   end
 
   def results
+
     @page = 1
     @courses = Course.search(params[:keywords], params[:subjects][:name])
     @keywords = params[:keywords]
